@@ -1,0 +1,10 @@
+{
+	"type": "module",
+	"devDependencies": {
+		"mongodb-memory-server": "^8.15.1",
+		"vitest": "^0.34.4"
+	},
+	"dependencies": {
+		"mongoose": "^7.5.1"
+	}
+}
