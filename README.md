@@ -1,8 +1,14 @@
 This repo demonstrates the problem with running [vitest](https://github.com/vitest-dev/vitest) in `--no-threads` mode, using [mongoose](https://github.com/Automattic/mongoose) and [mongodb-memory-server](https://github.com/nodkz/mongodb-memory-server).
 
+# Reproduction
+
+1) `git clone https://github.com/revosw/vitest-mms-repro.git`
+2) `pnpm i`
+3) `pnpm exec vitest --no-threads run`
+
 The problem arises when there are two tests importing the same model.
 ```
- FAIL  error.test.ts [ error.test.ts ]
+ FAIL  test1.test.ts [ test1.test.ts ]
 OverwriteModelError: Cannot overwrite `user` model once compiled.
  ❯ Mongoose.model node_modules/.pnpm/mongoose@7.5.1/node_modules/mongoose/lib/index.js:563:13
  ❯ model.ts:22:31
@@ -11,7 +17,7 @@ OverwriteModelError: Cannot overwrite `user` model once compiled.
      22| export const model = mongoose.model('user', schema);
        |                               ^
      23| 
- ❯ error.test.ts:1:31
+ ❯ test1.test.ts:1:31
 
 ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
 
